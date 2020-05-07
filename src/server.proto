@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package detector;
+
+service Detector {
+  rpc detect (DetectRequest) returns (DetectResponse);
+}
+
+message DetectRequest {
+
+  message DetectRequestOptionsModel {
+    int32 width = 1;
+    int32 height = 2;
+  }
+
+  DetectRequestOptionsModel options = 1;
+  bytes content = 2;
+}
+
+message DetectResponse {
+
+  message DetectResponseBoxModel {
+    int32 top = 1;
+    int32 left = 2;
+    int32 bottom = 3;
+    int32 right = 4;
+  }
+
+  repeated DetectResponseBoxModel boxes = 1;
+}
